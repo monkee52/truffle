@@ -93,5 +93,17 @@ namespace Blacksink.Properties {
                 this["StorageLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool StartOnLogin {
+            get {
+                return ((bool)(this["StartOnLogin"]));
+            }
+            set {
+                this["StartOnLogin"] = value;
+            }
+        }
     }
 }

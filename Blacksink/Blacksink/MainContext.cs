@@ -45,12 +45,17 @@ namespace Blacksink
                 frm.OnSetupFinished += setupCompleted;
                 frm.Show();
             }
-
+            
             //Load registry value
             RegistryKey rk = Registry.CurrentUser.OpenSubKey(RegistryPath, true);
             isRunningOnLogin = (rk.GetValue(KeyName) != null);
-            if (!isRunningOnLogin)
+
+            // Don't automatically start unless user wants to
+            if (Properties.Settings.Default.StartOnLogin && !isRunningOnLogin) {
                 rk.SetValue(KeyName, Application.ExecutablePath);
+            } else if (!Properties.Settings.Default.StartOnLogin && isRunningOnLogin) {
+                rk.DeleteValue(KeyName, false);
+            }
 
             try {
                 GlobalVariables.Units = JsonConvert.DeserializeObject<List<Unit>>(Properties.Settings.Default.UnitData);
