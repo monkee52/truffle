@@ -51,6 +51,7 @@ namespace Blacksink
             isRunningOnLogin = (rk.GetValue(KeyName) != null);
 
             // Don't automatically start unless user wants to
+            // * Modiifed by monkee52/Ayden Hull. Licensed under Ms-RL (See LICENSE.MS-RL)
             if (Properties.Settings.Default.StartOnLogin && !isRunningOnLogin) {
                 rk.SetValue(KeyName, Application.ExecutablePath);
             } else if (!Properties.Settings.Default.StartOnLogin && isRunningOnLogin) {
