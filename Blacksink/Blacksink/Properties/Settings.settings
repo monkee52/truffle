@@ -23,5 +23,11 @@
     <Setting Name="StartOnLogin" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="BlackboardUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://blackboard.qut.edu.au/</Value>
+    </Setting>
+    <Setting Name="LoginUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://esoe.qut.edu.au/qut-login/</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

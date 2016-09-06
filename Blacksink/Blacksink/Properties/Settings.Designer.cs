@@ -105,5 +105,29 @@ namespace Blacksink.Properties {
                 this["StartOnLogin"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://blackboard.qut.edu.au/")]
+        public string BlackboardUrl {
+            get {
+                return ((string)(this["BlackboardUrl"]));
+            }
+            set {
+                this["BlackboardUrl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://esoe.qut.edu.au/qut-login/")]
+        public string LoginUrl {
+            get {
+                return ((string)(this["LoginUrl"]));
+            }
+            set {
+                this["LoginUrl"] = value;
+            }
+        }
     }
 }

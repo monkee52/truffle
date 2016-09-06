@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Newtonsoft.Json;
+
 namespace Blacksink.Blackboard
 {
     public static class Script
@@ -23,11 +25,11 @@ namespace Blacksink.Blackboard
                 }
                 String.prototype.contains = function(q) { return this.indexOf(q) != -1; }
 
-                var USERNAME = '[USERNAME GOES HERE]', PASSWORD = '[PASSWORD GOES HERE]';
+                var USERNAME = ${USERNAME}, PASSWORD = ${PASSWORD};
 
                 function main() {
                     //Login? :D
-                    if (window.location.href.contains('/qut-login')) {
+                    if (window.location.pathname === ${LOGINURL}) {
                         try {
                             e('#username').value = USERNAME;
                             e('#password').value = PASSWORD;
@@ -90,8 +92,14 @@ namespace Blacksink.Blackboard
 
                 main();";
 
+            // Use JSON to convert properly quote the username and password
+            string usernameEncoded = JsonConvert.SerializeObject(username);
+            string passwordEncoded = JsonConvert.SerializeObject(password);
+
+            string loginUrl = new Uri(Properties.Settings.Default.LoginUrl).AbsolutePath;
+
             //To get our personalized script, just swap in our Username and Password.
-            return template_str.Replace("[USERNAME GOES HERE]", username).Replace("[PASSWORD GOES HERE]", password);
+            return template_str.Replace("${USERNAME}", usernameEncoded).Replace("${PASSWORD}", passwordEncoded).Replace("${LOGINURL}", loginUrl);
         }
     }
 }

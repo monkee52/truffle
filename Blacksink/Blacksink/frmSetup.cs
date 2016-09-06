@@ -23,7 +23,7 @@ namespace Blacksink
     public partial class frmSetup : Form
     {
         int Wizard_Position = 0;
-        const string URL = "https://esoe.qut.edu.au/qut-login/";
+        readonly string URL = Properties.Settings.Default.LoginUrl.ToString();
         private ChromiumWebBrowser b_login = null;
         private delegate void OnActHandler(bool success);
         private OnActHandler OnAct;
@@ -93,10 +93,10 @@ namespace Blacksink
                     if (Properties.Settings.Default.StorageLocation != "") {
                         txLocation.Text = Properties.Settings.Default.StorageLocation;
                     } else {
-                        txLocation.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Truffle\\QUT\\Units\\";
+                        txLocation.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Truffle\\Units\\";
                     }
                 }
-                catch { txLocation.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Truffle\\QUT\\Units\\"; }
+                catch { txLocation.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Truffle\\Units\\"; }
             }
             else if (Wizard_Position == 2) {
                 try {

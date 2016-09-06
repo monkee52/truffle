@@ -137,7 +137,7 @@ namespace Blacksink.Blackboard
                 crawl_started = false;
 
                 //Begin crawl.
-                ThreadSafeCrawlRequest("http://blackboard.qut.edu.au/");
+                ThreadSafeCrawlRequest(Properties.Settings.Default.BlackboardUrl);
             } else {
                 throw new Exception("Empty Username and/or Password.");
             }
@@ -184,7 +184,7 @@ namespace Blacksink.Blackboard
                     //Get the URL at index 0 and work with it.
                     CrawlableURL curl = urls[0];
                     string url = curl.URL;
-                    url = url.Contains("http") ? url : "https://blackboard.qut.edu.au/" + url;
+                    url = url.Contains("http") ? url : Properties.Settings.Default.BlackboardUrl + url;
 
                     //Remove it, allowing the next URL in the list to fall into place for next time.
                     urls.RemoveAt(0);

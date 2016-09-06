@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
-using System.Net.NetworkInformation;
+using System.Net;
+using System.IO;
 
 namespace Blacksink.Blackboard
 {
@@ -19,9 +20,11 @@ namespace Blacksink.Blackboard
 
         public static bool strongInternetConnectionTest() {
             try {
-                Ping testGoogle = new Ping();
-                PingReply reply = testGoogle.Send("qut.edu.au", 1000, new byte[32]); //Ping QUT
-                return reply.Status == IPStatus.Success;
+                using (WebClient client = new WebClient()) {
+                    using (Stream stream = client.OpenRead("http://www.google.com")) {
+                        return true;
+                    }
+                }
             }
             catch {
                 return false;
